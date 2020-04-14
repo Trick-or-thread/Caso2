@@ -12,7 +12,6 @@ import java.security.cert.X509Certificate;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 
 public class Intermediario {
 
@@ -20,21 +19,11 @@ public class Intermediario {
 
 	public static final String ALGORITMOS = "ALGORITMOS";
 
-	public static final String CERTSRV = "CERTSRV";
-
-	public static final String CERCLNT = "CERCLNT";
-
 	public static final String SEPARADOR = ":";
 
 	public static final String HOLA = "HOLA";
 
-	public static final String INICIO = "INICIO";
-
 	public static final String ERROR = "ERROR";
-
-	public static final String REC = "recibio-";
-
-	public static final String ENVIO = "envio-";
 
 	private Socket conexion;
 
@@ -191,12 +180,14 @@ public class Intermediario {
 		}
 		
 		// 13 ENCRIPTADO SIMETRICO USERNAME OUT
+				
+		byte[] userByte = Logica.toByteArray("INFRACOMP");
 		
-		byte[] userEncr = Logica.simetrico(Logica.toByteArray("1"), llaveSimetrica, Logica.BLOWFISH, Cipher.ENCRYPT_MODE);
+		byte[] userEncr = Logica.simetrico(userByte, llaveSimetrica, Logica.BLOWFISH, Cipher.ENCRYPT_MODE);
 		
-		outWriter.println(userEncr);
+		outWriter.println(Logica.toHexString(userEncr));
 		
-		System.out.println(">> CLIENTE: 1 (ENCRIPTADO)");
+		System.out.println(">> CLIENTE: INFRACOMP (ENCRIPTADO)");
 		
 		//14 RECIBIR FECHA IN
 	

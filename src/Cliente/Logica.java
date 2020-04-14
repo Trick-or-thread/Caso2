@@ -28,13 +28,9 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 public class Logica {
 	
-	
-	public static final String DES = "DES";
     public static final String AES = "AES";
     public static final String BLOWFISH = "Blowfish";
     public static final String RSA = "RSA";
-    public static final String ECIES = "ECIES";
-    public static final String RC4 = "RC4";
     public static final String HMACMD5 = "HMACMD5";
     public static final String HMACSHA1 = "HMACSHA1";
     public static final String HMACSHA256 = "HMACSHA256";
@@ -60,7 +56,7 @@ public class Logica {
     
     public static byte[] simetrico(byte[] mensaje, Key llaveSimetrica, String algoritmo, int opcion) throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
 
-    	if(algoritmo.equals(DES) || algoritmo.contentEquals(AES)) {
+    	if(algoritmo.contentEquals(AES)) {
     		
     		algoritmo = algoritmo + "/ECB/PKCS5Padding";
     		
